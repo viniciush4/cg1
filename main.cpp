@@ -11,35 +11,14 @@ float deltax = 0.0;
 float deltay = 0.0;
 
 Circulo circulo_modelo = Circulo(0,0,0.2);
-int indice_circulo_selecionado;
 Circulo circulos[20];
 int indice_circulos = 0;
+int indice_circulo_selecionado;
 
 void display(void)
 {
 	/* Limpar todos os pixels */
 	glClear(GL_COLOR_BUFFER_BIT);
-
-
-	/* Desenhar um polígono branco (retângulo) */
-/*	glColor3f(1.0, 1.0, 1.0);
-	glBegin(GL_POLYGON);
-		glVertex3f(0.25 + deltax, 0.25 + deltay, 0.0);
-		glVertex3f(0.75 + deltax, 0.25 + deltay, 0.0);
-		glVertex3f(0.75 + deltax, 0.75 + deltay, 0.0);
-		glVertex3f(0.25 + deltax, 0.75 + deltay, 0.0);
-	glEnd();
-*/
-	//Assim o quadrado é desenhado aonde clicar
-	// glColor3f(1.0, 1.0, 1.0);
-	// glBegin(GL_POLYGON);
-	// 	glVertex3f(-0.25 + deltax, -0.25 + deltay, 0.0);
-	// 	glVertex3f(0.25 + deltax, -0.25 + deltay, 0.0);
-	// 	glVertex3f(0.25 + deltax, 0.25 + deltay, 0.0);
-	// 	glVertex3f(-0.25 + deltax, 0.25 + deltay, 0.0);
-	// glEnd();
-
-	// DrawCircle(deltax, deltay, 0.2, 50);
 
 	circulo_modelo.desenhar();
 
@@ -49,6 +28,7 @@ void display(void)
 
 	/* Não esperar! */
 	glFlush();
+	// glutSwapBuffers();
 
 }
 
@@ -107,6 +87,8 @@ void motion(int x, int y){
 
 	circulo_modelo.x = x / 500.0;
 	circulo_modelo.y = (500 - y) / 500.0;
+
+	cout << "Indice selecionado: " << indice_circulo_selecionado << endl;
 }
 
 // Este callback é chamado quando o mouse se move 
@@ -139,14 +121,11 @@ void mouse(int button, int state, int x, int y)
 
 		selecionarCirculo(deltax, deltay);
 	}
-	else
-	{
 
-	}
 
 
 	//Redesenha após as modificações
-	glutPostRedisplay();
+	// glutPostRedisplay();
 
 }
 
