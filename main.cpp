@@ -11,6 +11,7 @@ float deltax = 0.0;
 float deltay = 0.0;
 
 Circulo circulo_modelo = Circulo(0,0,0.2);
+int indice_circulo_selecionado;
 Circulo circulos[20];
 int indice_circulos = 0;
 
@@ -51,17 +52,30 @@ void display(void)
 
 }
 
-bool verificarColisao(float x, float y){
+void adicionarCirculo(float x, float y){
 	for(int i=0; i < indice_circulos; i++){
 
 		float distancia = sqrt(pow(x-circulos[i].x,2) + pow(y-circulos[i].y,2));
 
 		if(distancia < 0.4){
-			cout << "Colisão!" << endl;
-			return true;
+			// cout << "Colisão!" << endl;
+			return;
 		}
 	}
-	return false;
+	circulos[indice_circulos] = Circulo(deltax, deltay, 0.2);
+	indice_circulos++;
+}
+
+void selecionarCirculo(float x, float y){
+	for(int i=0; i < indice_circulos; i++){
+
+		float distancia = sqrt(pow(x-circulos[i].x,2) + pow(y-circulos[i].y,2));
+
+		if(distancia < 0.2){
+			// cout << "Seleção!" << endl;
+			indice_circulo_selecionado = i;
+		}
+	}
 }
 
 
@@ -88,6 +102,11 @@ void idle(void)
 // mouse são pressionados
 void motion(int x, int y){
 	// cout << x << "  " << y << endl;
+	circulos[indice_circulo_selecionado].x = x / 500.0;
+	circulos[indice_circulo_selecionado].y = (500 - y) / 500.0;
+
+	circulo_modelo.x = x / 500.0;
+	circulo_modelo.y = (500 - y) / 500.0;
 }
 
 // Este callback é chamado quando o mouse se move 
@@ -116,10 +135,9 @@ void mouse(int button, int state, int x, int y)
 		deltay = (500 - y) / 500.0;
 		deltax = x / 500.0;
 
-		if(!verificarColisao(deltax, deltay)){
-			circulos[indice_circulos] = Circulo(deltax, deltay, 0.2);
-			indice_circulos++;
-		}
+		adicionarCirculo(deltax, deltay);
+
+		selecionarCirculo(deltax, deltay);
 	}
 	else
 	{
