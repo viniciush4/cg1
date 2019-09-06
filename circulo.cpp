@@ -19,40 +19,29 @@ Circulo::Circulo(float x, float y, float r, float cor_r, float cor_g, float cor_
     this->cor_r = cor_r;
     this->cor_g = cor_g;
     this->cor_b = cor_b;
-    this->cor_sobreposicao_r = cor_r;
-    this->cor_sobreposicao_g = cor_g;
-    this->cor_sobreposicao_b = cor_b;
 }
 
 void Circulo::desenhar(){
+    float theta = 0.0;
     glColor3f(this->cor_r, this->cor_g, this->cor_b);
 	glBegin(GL_LINE_LOOP);
-    for(int i=0; i < NUMERO_SEGMENTOS; i++)
-    {
-        float theta = 2.0f * 3.1415926f * float(i) / float(NUMERO_SEGMENTOS);
-
-        float x = r * cosf(theta);
-        float y = r * sinf(theta);
-
-        glVertex2f(x + this->x, y + this->y);
+    for(int i=0; i < NUMERO_SEGMENTOS; i++){
+        glVertex3f(x + r * cos(theta), y + r * sin(theta), 0.0);
+        theta += 2*3.1415926f /NUMERO_SEGMENTOS;
     }
     glEnd();
 }
 
 void Circulo::desenharPreenchido(){
+    float theta = 0.0;
     glColor3f(this->cor_r, this->cor_g, this->cor_b);
 	glBegin(GL_POLYGON);
-    for(int i=0; i < NUMERO_SEGMENTOS; i++)
-    {
-        float theta = 2.0f * 3.1415926f * float(i) / float(NUMERO_SEGMENTOS);
-
-        float x = r * cosf(theta);
-        float y = r * sinf(theta);
-
-        glVertex2f(x + this->x, y + this->y);
+    for(int i=0; i < NUMERO_SEGMENTOS; i++){
+        glVertex3f(x + r * cos(theta), y + r * sin(theta), 0.0);
+        theta += 2*3.1415926f /NUMERO_SEGMENTOS;
     }
     glEnd();
 }
 
-Circulo::~Circulo() {
+Circulo::~Circulo(){
 }

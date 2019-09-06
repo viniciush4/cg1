@@ -24,11 +24,5 @@ tinyxml2: tinyxml2.cpp
 configuracao: configuracao.cpp
 	g++ -c configuracao.cpp
 
-run_test_1: 
-	./trabalhocg ./Test_1/config.xml
-
-run_test_2: 
-	./trabalhocg ./Test_2/config.xml
-
 clean:
 	@rm -f *.o trabalhocg
