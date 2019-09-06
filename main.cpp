@@ -143,6 +143,11 @@ int main(int argc, char** argv){
 	xml_circulo_modelo->QueryFloatAttribute( "corSobreposicaoG", &configuracao.circulo_modelo_cor_sobreposicao_g );
 	xml_circulo_modelo->QueryFloatAttribute( "corSobreposicaoB", &configuracao.circulo_modelo_cor_sobreposicao_b );
 
+	if(!configuracao.validarConfiguracao()){
+		cout << "Erro: As cores no arq. de configuração devem estar no intervalo [0,1]" << endl;
+		return 1;
+	}
+
 	circulo_modelo = Circulo(
 		0,0,
 		configuracao.circulo_raio,
@@ -159,7 +164,7 @@ int main(int argc, char** argv){
 	glClearColor(configuracao.janela_cor_r, configuracao.janela_cor_g, configuracao.janela_cor_b, 0.0);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0.0, configuracao.janela_altura, 0.0, configuracao.janela_altura, -1.0, 1.0);
+	glOrtho(0.0, configuracao.janela_largura, 0.0, configuracao.janela_altura, -1.0, 1.0);
 	glutDisplayFunc(display);
 	glutIdleFunc(idle);
 	glutMouseFunc(mouse);

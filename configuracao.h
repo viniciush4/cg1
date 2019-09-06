@@ -22,6 +22,6 @@ public:
 	const char* janela_titulo;
 
 	Configuracao();
-	Configuracao(char* janela_titulo);
+	bool validarConfiguracao();
 	virtual ~Configuracao();
 };
