@@ -1,16 +1,3 @@
-
-# all: gcc
-# 	@echo "Done."
-
-# tinyxml2: tinyxml2.cpp
-# 	g++ -c tinyxml2.cpp
-
-# Color: Color.cpp
-# 	g++ -c Color.cpp 
-	
-# gcc: Color tinyxml2
-# 	g++ teste-xml.cpp -o teste-xml Color.o tinyxml2.o
-
 all: circulo tinyxml2 configuracao
 	g++ main.cpp -o trabalhocg circulo.o tinyxml2.o configuracao.o -lglut -lGLU -lGL
 	@echo "Done."

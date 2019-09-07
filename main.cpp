@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <string.h>
 #include <iostream>
 #include <math.h>
 #include "circulo.h"
@@ -19,20 +17,21 @@ int indice_circulo_selecionado = -1;
 
 void display(void){
 
-	/* Limpar todos os pixels */
+	// Limpa buffers para predefinir valores
 	glClear(GL_COLOR_BUFFER_BIT);
 	
+	// Desenha todos os circulos
 	for(int i=0; i < circulos.size(); i++){
 		circulos.at(i).desenharPreenchido();
 	}
 	
+	// Desenha o circulo modelo
 	if(exibir_circulo_modelo){
 		circulo_modelo.desenhar();
 	}
 
-	/* Não esperar! */
+	// Força a execução de comandos na fila
 	glFlush();
-	// glutSwapBuffers();
 }
 
 bool detectarColisao(float x, float y){
@@ -68,7 +67,8 @@ void selecionarCirculo(float x, float y){
 }
 
 void idle(void){
-	//Redesenha após as modificações
+
+	// Marca a janela atual como precisando ser reexibida
 	glutPostRedisplay();
 }
 
@@ -144,7 +144,7 @@ int main(int argc, char** argv){
 	xml_circulo_modelo->QueryFloatAttribute( "corSobreposicaoB", &configuracao.circulo_modelo_cor_sobreposicao_b );
 
 	if(!configuracao.validarConfiguracao()){
-		cout << "Erro: As cores no arq. de configuração devem estar no intervalo [0,1]" << endl;
+		cout << "Erro: As cores no arquivo de configuração devem estar no intervalo [0,1]" << endl;
 		return 1;
 	}
 
