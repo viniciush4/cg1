@@ -3,6 +3,7 @@
 Trata-se de um programa que permite que o usuário crie e arraste círculos dentro de uma janela. As configurações (cor de preenchimento dos círculos, tamanho do raio dos círculos, cor de sobreposição, dimensões, cor de fundo  e título da janela) são lidas de um arquivo XML.
 
 <img src="https://github.com/viniciush4/cg1/blob/master/vokoscreen-2019-11-08_22-03-20.gif?raw=true" width="500">
+<img src="https://github.com/viniciush4/cg1/blob/master/vokoscreen-2019-11-08_22-05-31.gif?raw=true" width="500">
 
 ## Iniciando
 
